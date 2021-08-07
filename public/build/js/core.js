@@ -241,6 +241,8 @@ async function loadData () {
 function versionCheck() {
     $.get('/version', (res) => {
         if (version !== res.version) {
+            console.log('current version', version)
+            console.log('version', res.version)
             alert('CryptoBlades Tracker has a new update, please refresh your page!')
         }
     })
@@ -423,6 +425,7 @@ async function simulate(address) {
 
     const charHtml = await Promise.all(charIds.map(async charId => {
         const charData = characterFromContract(charId, await getCharacterData(charId))
+        console.log(charData)
         const sta = await getCharacterStamina(charId)
         return `<option style="${getClassFromTrait(charData.trait)}" value="${charId}">${charId} | ${charData.traitName} | Lv. ${(charData.level + 1)} | Sta. ${sta}/200</option>`
     }))

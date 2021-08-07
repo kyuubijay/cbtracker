@@ -31,6 +31,7 @@ async function subscribe (address) {
     subs[address] = setInterval(async() => {
         try {
             const latestBlock = await getLatestBlock()
+            console.log('encoded', web3.eth.abi.encodeParameter('address', address))
             const results = await getPastEvents('FightOutcome',   
                 latestBlock.number-5,        
                 latestBlock.number,
@@ -38,6 +39,16 @@ async function subscribe (address) {
                 ['0x7a58aac6530017822bf3210fccef7efa31f56277f19966bc887bfb11f40ca96d',
                 web3.eth.abi.encodeParameter('address', address)]
                 );
+
+            const forgeResults = await getPastEvents('Reforged',   
+                latestBlock.number-5,        
+                latestBlock.number,
+                '0x39bea96e13453ed52a734b6aceed4c41f57b2271',
+                ['0xd1b1d9a936fc3409b20503a5fd66b94b1c2a8b4986d01def5b9ef60272896e3c',
+                web3.eth.abi.encodeParameter('address', address)]
+                );
+
+            console.log('forgeResults', forgeResults)
             if (results.length > 0) {
                 results.forEach(async result => {
                     if (!txs.includes(result.transactionHash)) {

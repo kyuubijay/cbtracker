@@ -10,6 +10,7 @@ async function subscribe (address) {
     subs[address] = setInterval(async() => {
         try {
             const latestBlock = await getLatestBlock()
+            console.log('latestBlock', latestBlock)
             const results = await getPastEvents('FightOutcome',   
                 latestBlock.number-5,        
                 latestBlock.number,

@@ -423,8 +423,13 @@ async function simulate(address) {
 
     const charHtml = await Promise.all(charIds.map(async charId => {
         const charData = characterFromContract(charId, await getCharacterData(charId))
+        const exp = await getCharacterExp(charId)
+        const nextTargetExpLevel = getNextTargetExpLevel(charData.level)
+        var nextExp = nextTargetExpLevel.exp - (parseInt(charData.xp) + parseInt(exp))
+        if(nextExp < 0) { nextExp = 0 }
+        console.log(charData)
         const sta = await getCharacterStamina(charId)
-        return `<option style="${getClassFromTrait(charData.trait)}" value="${charId}">${charId} | ${charData.traitName} | Lv. ${(charData.level + 1)} | Sta. ${sta}/200</option>`
+        return `<option style="${getClassFromTrait(charData.trait)}" value="${charId}">${charId} | ${charData.traitName} | Lv. ${(charData.level + 1)} | Sta. ${sta}/200 | ${nextExp}</option>`
     }))
     const weaponsData = await Promise.all(weapIds.map(async weapId => weaponFromContract(weapId, await getWeaponData(weapId))));
     weaponsData.sort((a, b) => b.stars - a.stars);
