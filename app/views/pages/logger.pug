@@ -29,13 +29,53 @@ main.page-wrapper
             .row
               .col-md-3.mb-3
                 label.text-white.mb-1 Address subscribed
-                textarea#fight-address.form-control(rows="15" readonly style='font-size: 13px; color: black;' wrap="off")
+                //- textarea#fight-address.form-control(rows="15" readonly style='font-size: 13px; color: black;' wrap="off")
+                .table-responsive.mb-0
+                  table#table-accounts-logger.table.table-sm.card-table.table-bordered
+                    thead.text-center
+                      tr
+                        th.text-white.align-middle(rowspan='2')
+                          | Name
+                        th.text-white.align-middle(rowspan='2')
+                          | Address
+                    tbody.text-center
               .col-md-9
                 .row
                   .col
                     label.text-white.mb-1 Fight logs
+                    .table-responsive.mb-0
+                      table#table-fight-logs.table.table-sm.card-table.table-bordered
+                        thead.text-center
+                          tr
+                            th.text-white.align-middle(rowspan='1')
+                              | Date
+                            th.text-white.align-middle(rowspan='1')
+                              | Name
+                            th.text-white.align-middle(rowspan='1')
+                              | Result
+                            th.text-white.align-middle(rowspan='1')
+                              | Char ID
+                            th.text-white.align-middle(rowspan='1')
+                              | Weap ID
+                            th.text-white.align-middle(rowspan='1')
+                              | Player Roll
+                            th.text-white.align-middle(rowspan='1')
+                              | Enemy Roll
+                            th.text-white.align-middle(rowspan='1')
+                              | Reward
+                            th.text-white.align-middle(rowspan='1')
+                              | XP
+                            th.text-white.align-middle(rowspan='1')
+                              | Gas
+                            th.text-white.align-middle(rowspan='1')
+                              | Gain
+                        tbody.text-center
+                .row
+                  .col
+                    label#total_gain_label.text-white.mb-1 Total gain: 
                   .col-auto
                     button.btn.btn-sm.btn-warning.mb-1(style='margin-top: -15px !important;' type='button' onclick='exportLogs()')
                       | Export Logs
-                textarea#fight-result.form-control(rows="15" readonly style='font-size: 13px; color: black;' wrap="off")
+                  
+                //- textarea#fight-result.form-control(rows="15" readonly style='font-size: 13px; color: black;' wrap="off")
 include ../footer

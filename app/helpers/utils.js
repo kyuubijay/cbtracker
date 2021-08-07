@@ -311,4 +311,5 @@ module.exports = {
   getNextTargetExpLevel,
   getPotentialXp,
   getEnemyDetails,
+  tableToJSON
 };
